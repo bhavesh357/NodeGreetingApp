@@ -13,5 +13,7 @@ module.exports = (app) => {
     app.post('/', greeting.create);
 
     app.put('/', greeting.modify);
+
+    app.delete('/', greeting.delete);
 };
 

@@ -33,3 +33,13 @@ exports.modify= (req, res) => {
     data =greeting.getHello();
     res.send(data);
 };
+
+/**
+ *
+ * @param {object} req
+ * @param {object} res
+ */
+exports.delete= (req, res) => {
+    data =greeting.getHello();
+    res.send(data);
+};
