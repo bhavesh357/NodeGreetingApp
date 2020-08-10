@@ -1,0 +1,17 @@
+{
+  "name": "nodegreeting",
+  "version": "1.0.0",
+  "description": "\"An App to Greet a user\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Express",
+    "RestAPI",
+    "MongoDB",
+    "Mongoose"
+  ],
+  "author": "Bhavesh",
+  "license": "ISC"
+}
