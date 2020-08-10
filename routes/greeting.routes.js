@@ -5,8 +5,11 @@ const greeting = require('../controllers/greeting.controller');
 
 /**
  *
- * @param {function} app it takes http requests
+ * @param {function} app that takes http requests
  */
 module.exports = (app) => {
     app.get('/', greeting.find);
+
+    app.post('/', greeting.create);
 };
+
