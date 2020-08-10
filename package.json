@@ -4,7 +4,9 @@
   "description": "\"An App to Greet a user\"",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/**/*.js",
+    "debug": "nodemon --inspect server.js",
+    "fix": "node_modules\\.bin\\eslint --fix"
   },
   "keywords": [
     "Express",
@@ -24,6 +26,7 @@
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "eslint": "^7.6.0",
+    "eslint-config-google": "^0.14.0",
     "jsdoc": "^3.6.5",
     "mocha": "^8.1.1"
   }
