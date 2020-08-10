@@ -14,7 +14,22 @@ exports.find = (req, res) => {
     res.send(data);
 };
 
+/**
+ *
+ * @param {object} req
+ * @param {object} res
+ */
 exports.create= (req, res) => {
+    data =greeting.getHello();
+    res.send(data);
+};
+
+/**
+ *
+ * @param {object} req
+ * @param {object} res
+ */
+exports.modify= (req, res) => {
     data =greeting.getHello();
     res.send(data);
 };

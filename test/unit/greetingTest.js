@@ -28,5 +28,15 @@ describe('Greeting App Test', () => {
                     done();
                 });
         });
+
+        it('PUT /', (done) => {
+            chai.request(app)
+                .put('/')
+                .end((err, response) => {
+                    result = response.body.message;
+                    assert.equal(result, 'Hello');
+                    done();
+                });
+        });
     });
 });
