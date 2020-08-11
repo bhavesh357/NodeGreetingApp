@@ -1,45 +1,48 @@
-/**
- * importing service
- */
+// importing service
 const greeting= require('./../services/greeting.service');
 
-let data;
 /**
- *
- * @param {object} req
- * @param {object} res
- */
-exports.find = (req, res) => {
-    data =greeting.getHello();
-    res.send(data);
-};
+* @description a greeting controller that contains
+*      method to manupulate greetings
+*/
+module.exports = class greetingController {
+    /**
+    * @description a function to find the greeting
+    * @param {object} req
+    * @param {object} res
+    */
+    find(req, res) {
+        const greetingMessage =greeting.getHello();
+        res.send(greetingMessage);
+    }
 
-/**
- *
- * @param {object} req
- * @param {object} res
- */
-exports.create= (req, res) => {
-    data =greeting.getHello();
-    res.send(data);
-};
+    /**
+    * @description a function to create the greeting
+    * @param {object} req
+    * @param {object} res
+    */
+    create(req, res) {
+        const greetingMessage =greeting.getHello();
+        res.send(greetingMessage);
+    }
 
-/**
- *
- * @param {object} req
- * @param {object} res
- */
-exports.modify= (req, res) => {
-    data =greeting.getHello();
-    res.send(data);
-};
+    /**
+    * @description a function to modify the greeting
+    * @param {object} req
+    * @param {object} res
+    */
+    modify(req, res) {
+        const greetingMessage =greeting.getHello();
+        res.send(greetingMessage);
+    }
 
-/**
- *
- * @param {object} req
- * @param {object} res
- */
-exports.delete= (req, res) => {
-    data =greeting.getHello();
-    res.send(data);
-};
+    /**
+    * @description a function to delete the greeting
+    * @param {object} req
+    * @param {object} res
+    */
+    delete(req, res) {
+        const greetingMessage =greeting.getHello();
+        res.send(greetingMessage);
+    }
+}

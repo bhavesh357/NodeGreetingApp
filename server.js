@@ -1,28 +1,31 @@
 /**
- * importig express and url parser to create a rest api
+ * @description importing express
+ * @var {class} express class instance of express
  */
 const express = require('express');
+
+/**
+ * @description importing express
+ * @var {class} bodyParser class instance of body-parser
+ */
 const bodyParser= require('body-parser');
 
 /**
- * exporting app to be used by other modules
+ * @description exporting instance of express
+ * @var {class} app class instance of express
  */
 module.exports = app = express();
 
-/**
- * using bodyparser to parse the url of json type
- */
+// using bodyparser middleware to parse the url of json type
 app.use(bodyParser.json());
 
 /**
- * importing routes
+ * @description importing a instance of greeting routes
+ * passing app as param
  */
 require('./routes/greeting.routes')(app);
 
-/**
- * @param {Integer} portNumber
- * @param {function} event status
- */
+// checking if the server is running
 app.listen(3000, () => {
     console.log('server is listening on port 3000');
 });

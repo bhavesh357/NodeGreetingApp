@@ -1,10 +1,13 @@
 /**
- * importing greeting controller
+ * @description importing greeting controller
+ * @var {class} greeting class instance of greetingController
  */
-const greeting = require('../controllers/greeting.controller');
+const Controller = require('./../controllers/greeting.controller');
+
+const greeting= new Controller();
 
 /**
- *
+ * @description Exports greeting routes
  * @param {function} app that takes http requests
  */
 module.exports = (app) => {
