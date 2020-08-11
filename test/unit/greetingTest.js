@@ -9,7 +9,7 @@ let result;
 
 describe('Greeting App Test', () => {
     describe('Custom Greeting Test', () => {
-        it('POST /greeting', (done) => {
+        it('POST /greeting with first name', (done) => {
             chai.request(app)
                 .post('/greeting')
                 .send({
@@ -23,7 +23,7 @@ describe('Greeting App Test', () => {
                 });
         });
 
-        it('POST /greeting', (done) => {
+        it('POST /greeting with last name', (done) => {
             chai.request(app)
                 .post('/greeting')
                 .send({
@@ -32,6 +32,19 @@ describe('Greeting App Test', () => {
                 }).end( (err, response) => {
                     result = response.body.message;
                     assert.equal(result, 'Hello Kadam');
+                    done();
+                });
+        });
+
+        it('POST /greeting with first and last name', (done) => {
+            chai.request(app)
+                .post('/greeting')
+                .send({
+                    'firstName': 'Bhavesh',
+                    'lastName': 'Kadam',
+                }).end( (err, response) => {
+                    result = response.body.message;
+                    assert.equal(result, 'Hello Bhavesh Kadam');
                     done();
                 });
         });
