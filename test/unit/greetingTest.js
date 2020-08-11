@@ -61,6 +61,18 @@ describe('Greeting App Test', () => {
                     done();
                 });
         });
+        it('POST /greeting with nothing', (done) => {
+            chai.request(app)
+                .post('/greeting')
+                .send({
+                    'firstName': 5,
+                    'lastName': '',
+                }).end( (err, response) => {
+                    result = response.status;
+                    assert.equal(result, 500);
+                    done();
+                });
+        });
     });
     describe('HTTP METHODS Test', () => {
         it('GET /greeting', (done) => {

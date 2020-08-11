@@ -31,6 +31,8 @@ module.exports = class greetingService {
                 if (flag) {
                     message+=' World';
                 }
+            } else {
+                throw new Error('Please Enter Proper Name');
             }
         } else {
             message = 'Hello World';
