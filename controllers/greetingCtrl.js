@@ -15,7 +15,7 @@ module.exports = class greetingController {
     * @param {object} res
     */
     find(req, res) {
-        const greetingMessage =greeting.getHello();
+        const greetingMessage =greeting.getHello(req.body);
         res.send(greetingMessage);
     }
 
@@ -25,7 +25,7 @@ module.exports = class greetingController {
     * @param {object} res
     */
     create(req, res) {
-        const greetingMessage =greeting.getHello();
+        const greetingMessage =greeting.getHello(req.body);
         res.send(greetingMessage);
     }
 
@@ -35,7 +35,7 @@ module.exports = class greetingController {
     * @param {object} res
     */
     modify(req, res) {
-        const greetingMessage =greeting.getHello();
+        const greetingMessage =greeting.getHello(req.body);
         res.send(greetingMessage);
     }
 
@@ -45,7 +45,7 @@ module.exports = class greetingController {
     * @param {object} res
     */
     delete(req, res) {
-        const greetingMessage =greeting.getHello();
+        const greetingMessage =greeting.getHello(req.body);
         res.send(greetingMessage);
     }
 }

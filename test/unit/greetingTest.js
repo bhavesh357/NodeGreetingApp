@@ -8,10 +8,22 @@ chai.use(chaiHttp);
 let result;
 
 describe('Greeting App Test', () => {
+    describe('Custom Greeting Test', () => {
+        it('POST /greeting', (done) => {
+            chai.request(app)
+                .post('/greeting')
+                .send({'firstName': 'Bhavesh'})
+                .end( (err, response) => {
+                    result = response.body.message;
+                    assert.equal(result, 'Hello Bhavesh');
+                    done();
+                });
+        });
+    });
     describe('HTTP METHODS Test', () => {
-        it('GET /', (done) => {
+        it('GET /greeting', (done) => {
             chai.request(app)
-                .get('/')
+                .get('/greeting')
                 .end((err, response) => {
                     result = response.body.message;
                     assert.equal(result, 'Hello World');
@@ -19,9 +31,9 @@ describe('Greeting App Test', () => {
                 });
         });
 
-        it('POST /', (done) => {
+        it('POST /greeting', (done) => {
             chai.request(app)
-                .post('/')
+                .post('/greeting')
                 .end((err, response) => {
                     result = response.body.message;
                     assert.equal(result, 'Hello World');
@@ -29,9 +41,9 @@ describe('Greeting App Test', () => {
                 });
         });
 
-        it('PUT /', (done) => {
+        it('PUT /greeting', (done) => {
             chai.request(app)
-                .put('/')
+                .put('/greeting')
                 .end((err, response) => {
                     result = response.body.message;
                     assert.equal(result, 'Hello World');
@@ -39,9 +51,9 @@ describe('Greeting App Test', () => {
                 });
         });
 
-        it('DELETE /', (done) => {
+        it('DELETE /greeting', (done) => {
             chai.request(app)
-                .delete('/')
+                .delete('/greeting')
                 .end((err, response) => {
                     result = response.body.message;
                     assert.equal(result, 'Hello World');
