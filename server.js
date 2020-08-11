@@ -23,7 +23,7 @@ app.use(bodyParser.json());
  * @description importing a instance of greeting routes
  * passing app as param
  */
-require('./routes/greeting.routes')(app);
+require('./routes/greetingRts')(app);
 
 // checking if the server is running
 app.listen(3000, () => {

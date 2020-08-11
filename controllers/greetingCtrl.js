@@ -1,5 +1,5 @@
 // importing service
-const Service = require('./../services/greeting.service');
+const Service = require('../services/greetingSrvc');
 
 // creating a instance of service
 const greeting = new Service();

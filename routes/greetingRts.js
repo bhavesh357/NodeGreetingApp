@@ -2,7 +2,7 @@
  * @description importing greeting controller
  * @var {class} greeting class instance of greetingController
  */
-const Controller = require('./../controllers/greeting.controller');
+const Controller = require('../controllers/greetingCtrl');
 
 // creating a instance of controller
 const greeting= new Controller();
