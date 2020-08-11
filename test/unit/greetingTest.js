@@ -48,6 +48,19 @@ describe('Greeting App Test', () => {
                     done();
                 });
         });
+
+        it('POST /greeting with nothing', (done) => {
+            chai.request(app)
+                .post('/greeting')
+                .send({
+                    'firstName': '',
+                    'lastName': '',
+                }).end( (err, response) => {
+                    result = response.body.message;
+                    assert.equal(result, 'Hello World');
+                    done();
+                });
+        });
     });
     describe('HTTP METHODS Test', () => {
         it('GET /greeting', (done) => {

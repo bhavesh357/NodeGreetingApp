@@ -19,11 +19,17 @@ module.exports = class greetingService {
                     (reqBody.lastName instanceof String ||
                         typeof reqBody.lastName === 'string' ) ) {
                 message = 'Hello';
+                let flag = true;
                 if (reqBody.firstName !== '' ) {
                     message+=' '+reqBody.firstName;
+                    flag=false;
                 }
                 if (reqBody.lastName !== '' ) {
                     message+=' '+reqBody.lastName;
+                    flag=false;
+                }
+                if (flag) {
+                    message+=' World';
                 }
             }
         } else {
