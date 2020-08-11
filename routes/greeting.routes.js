@@ -4,6 +4,7 @@
  */
 const Controller = require('./../controllers/greeting.controller');
 
+// creating a instance of controller
 const greeting= new Controller();
 
 /**

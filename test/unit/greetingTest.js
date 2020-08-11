@@ -14,7 +14,7 @@ describe('Greeting App Test', () => {
                 .get('/')
                 .end((err, response) => {
                     result = response.body.message;
-                    assert.equal(result, 'Hello');
+                    assert.equal(result, 'Hello World');
                     done();
                 });
         });
@@ -24,7 +24,7 @@ describe('Greeting App Test', () => {
                 .post('/')
                 .end((err, response) => {
                     result = response.body.message;
-                    assert.equal(result, 'Hello');
+                    assert.equal(result, 'Hello World');
                     done();
                 });
         });
@@ -34,7 +34,7 @@ describe('Greeting App Test', () => {
                 .put('/')
                 .end((err, response) => {
                     result = response.body.message;
-                    assert.equal(result, 'Hello');
+                    assert.equal(result, 'Hello World');
                     done();
                 });
         });
@@ -44,7 +44,7 @@ describe('Greeting App Test', () => {
                 .delete('/')
                 .end((err, response) => {
                     result = response.body.message;
-                    assert.equal(result, 'Hello');
+                    assert.equal(result, 'Hello World');
                     done();
                 });
         });

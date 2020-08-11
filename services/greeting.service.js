@@ -8,7 +8,7 @@ module.exports = class greetingService {
      * @return {object} an object with string message value
      */
     getHello() {
-        return {'message': 'Hello'};
+        return {'message': 'Hello World'};
     };
 };
 

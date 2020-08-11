@@ -1,5 +1,8 @@
 // importing service
-const greeting= require('./../services/greeting.service');
+const Service = require('./../services/greeting.service');
+
+// creating a instance of service
+const greeting = new Service();
 
 /**
 * @description a greeting controller that contains
