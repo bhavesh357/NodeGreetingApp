@@ -12,10 +12,26 @@ describe('Greeting App Test', () => {
         it('POST /greeting', (done) => {
             chai.request(app)
                 .post('/greeting')
-                .send({'firstName': 'Bhavesh'})
+                .send({
+                    'firstName': 'Bhavesh',
+                    'lastName': '',
+                })
                 .end( (err, response) => {
                     result = response.body.message;
                     assert.equal(result, 'Hello Bhavesh');
+                    done();
+                });
+        });
+
+        it('POST /greeting', (done) => {
+            chai.request(app)
+                .post('/greeting')
+                .send({
+                    'firstName': '',
+                    'lastName': 'Kadam',
+                }).end( (err, response) => {
+                    result = response.body.message;
+                    assert.equal(result, 'Hello Kadam');
                     done();
                 });
         });

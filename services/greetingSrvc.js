@@ -13,10 +13,18 @@ module.exports = class greetingService {
     getHello(reqBody) {
         console.log(reqBody);
         let message;
-        if (reqBody.firstName !== undefined) {
-            if (reqBody.firstName instanceof String ||
-            typeof reqBody.firstName === 'string' ) {
-                message = 'Hello '+reqBody.firstName;
+        if (reqBody.firstName !== undefined && reqBody.lastName!== undefined) {
+            if ( (reqBody.firstName instanceof String ||
+                typeof reqBody.firstName === 'string' ) &&
+                    (reqBody.lastName instanceof String ||
+                        typeof reqBody.lastName === 'string' ) ) {
+                message = 'Hello';
+                if (reqBody.firstName !== '' ) {
+                    message+=' '+reqBody.firstName;
+                }
+                if (reqBody.lastName !== '' ) {
+                    message+=' '+reqBody.lastName;
+                }
             }
         } else {
             message = 'Hello World';
