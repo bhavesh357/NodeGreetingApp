@@ -61,6 +61,7 @@ describe('Greeting App Test', () => {
                     done();
                 });
         });
+
         it('POST /greeting with nothing', (done) => {
             chai.request(app)
                 .post('/greeting')
@@ -111,6 +112,16 @@ describe('Greeting App Test', () => {
                 .end((err, response) => {
                     result = response.body.message;
                     assert.equal(result, 'Hello World');
+                    done();
+                });
+        });
+
+        it('DELETE /grrr', (done) => {
+            chai.request(app)
+                .delete('/grrr')
+                .end((err, response) => {
+                    result = response.status;
+                    assert.equal(result, 404);
                     done();
                 });
         });
