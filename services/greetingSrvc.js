@@ -60,5 +60,23 @@ module.exports = class greetingService {
                 return err;
             });
     }
+
+    /**
+     * @description function to get greeting by Id
+     * @param {number} id id of the greeting
+     * @return {object} greeting
+     */
+    async findOne(id) {
+        return await Greeting.findById(id)
+            .then( (item) => {
+                if (!item) {
+                    return new Error('Greeting not found with id ' + id);
+                }
+                console.log(item);
+                return item;
+            }).catch( (err) => {
+                return new Error('Greeting not found with id ' + id);
+            });
+    }
 };
 

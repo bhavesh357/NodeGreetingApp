@@ -14,6 +14,8 @@ const greeting= new Controller();
 module.exports = (app) => {
     app.get('/greeting/', greeting.find);
 
+    app.get('/greeting/:greetId', greeting.findOne);
+
     app.post('/greeting/', greeting.create);
 
     app.put('/greeting/', greeting.modify);
