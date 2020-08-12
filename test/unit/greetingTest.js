@@ -7,6 +7,8 @@ chai.use(chaiHttp);
 
 let result;
 
+let newId;
+
 describe('Greeting App Test', () => {
     describe('Repository Greeting Test', () => {
         it('POST /greeting returns greeting model', (done) => {
@@ -21,17 +23,18 @@ describe('Greeting App Test', () => {
                     assert.equal(result.message, 'Hello Bhavesh Kadam');
                     assert.equal(result.firstName, 'Bhavesh');
                     assert.equal(result.lastName, 'Kadam');
+                    newId = result._id;
                     done();
                 });
         });
 
         it('GET /greeting/:greetId returns greeting model', (done) => {
             chai.request(app)
-                .get('/greeting/5f33c7fbd81a4712f8f9affe')
+                .get('/greeting/'+newId)
                 .end( (err, response) => {
                     result = response.body;
-                    assert.equal(result.message, 'Hello Shivam Kadam');
-                    assert.equal(result.firstName, 'Shivam');
+                    assert.equal(result.message, 'Hello Bhavesh Kadam');
+                    assert.equal(result.firstName, 'Bhavesh');
                     assert.equal(result.lastName, 'Kadam');
                     done();
                 });
@@ -49,7 +52,7 @@ describe('Greeting App Test', () => {
 
         it('PUT /greeting/:greetId  edit greeting model', (done) => {
             chai.request(app)
-                .put('/greeting/5f33c7fbd81a4712f8f9affe')
+                .put('/greeting/'+newId)
                 .send({
                     'firstName': 'Pramod',
                     'lastName': 'Kadamm',
@@ -65,16 +68,10 @@ describe('Greeting App Test', () => {
 
         it('DELETE /greeting/:greetId  edit greeting model', (done) => {
             chai.request(app)
-                .delete('/greeting/5f33c7fbd81a4712f8f9affe')
-                .send({
-                    'firstName': 'Pramod',
-                    'lastName': 'Kadamm',
-                })
+                .delete('/greeting/'+newId)
                 .end( (err, response) => {
                     result = response.body;
-                    assert.equal(result.message, 'Hello Pramod Kadamm');
-                    assert.equal(result.firstName, 'Pramod');
-                    assert.equal(result.lastName, 'Kadamm');
+                    assert.equal(result.message, 'deleted successfully');
                     done();
                 });
         });

@@ -59,7 +59,6 @@ module.exports = class greetingService {
         });
         return await greeting.save()
             .then((item) => {
-                mailer.sendMail('Successfully added');
                 return item;
             })
             .catch((err) => {
@@ -137,7 +136,7 @@ module.exports = class greetingService {
                     return new Error('Greeting not found ');
                 }
                 console.log(item);
-                return 'deleted successfully';
+                return {'message': 'deleted successfully'};
             }).catch( (err) => {
                 console.log(err);
                 return new Error('Greeting not found with id ');
