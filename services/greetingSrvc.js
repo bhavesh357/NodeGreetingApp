@@ -1,4 +1,9 @@
+// importing db schema
 const Greeting = require('../app/model/greetingModel');
+
+// importing mail servie
+const Mailer = require('./../lib/service/mailService');
+const mailer = new Mailer();
 
 /**
  * @description greeting service to manupulate greeting data
@@ -54,6 +59,7 @@ module.exports = class greetingService {
         });
         return await greeting.save()
             .then((item) => {
+                mailer.sendMail('Successfully added');
                 return item;
             })
             .catch((err) => {
