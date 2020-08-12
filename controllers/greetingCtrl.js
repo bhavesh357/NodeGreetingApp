@@ -94,4 +94,19 @@ module.exports = class greetingController {
         const greetingMessage =greeting.getHello(req.body);
         res.send(greetingMessage);
     }
+
+    /**
+    * @description a function to delete the greeting by Id
+    * @param {object} req
+    * @param {object} res
+    */
+    async deleteGreeting(req, res) {
+        try {
+            const greetingMessage =await greeting.
+                deleteGreeting(req.params.greetId);
+            res.send(greetingMessage);
+        } catch (err) {
+            res.status(500).send(err);
+        }
+    }
 };

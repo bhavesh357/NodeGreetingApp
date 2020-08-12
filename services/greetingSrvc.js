@@ -63,7 +63,7 @@ module.exports = class greetingService {
 
     /**
      * @description function to get greeting by Id
-     * @param {number} id id of the greeting
+     * @param {string} id id of the greeting
      * @return {object} greeting
      */
     async findOne(id) {
@@ -113,6 +113,25 @@ module.exports = class greetingService {
                 }
                 console.log(item);
                 return item;
+            }).catch( (err) => {
+                console.log(err);
+                return new Error('Greeting not found with id ');
+            });
+    }
+
+    /**
+     * @description function to delete greeting by Id
+     * @param {string} id request
+     * @return {object} array of greetings
+     */
+    async deleteGreeting(id) {
+        return await Greeting.findByIdAndRemove(id)
+            .then( (item) => {
+                if (!item) {
+                    return new Error('Greeting not found ');
+                }
+                console.log(item);
+                return 'deleted successfully';
             }).catch( (err) => {
                 console.log(err);
                 return new Error('Greeting not found with id ');

@@ -25,5 +25,7 @@ module.exports = (app) => {
     app.put('/greeting/:greetId', greeting.editGreeting);
 
     app.delete('/greeting', greeting.delete);
+
+    app.delete('/greeting/:greetId', greeting.deleteGreeting);
 };
 
