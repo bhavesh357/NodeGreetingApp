@@ -46,6 +46,22 @@ describe('Greeting App Test', () => {
                     done();
                 });
         });
+
+        it('PUT /greeting/:greetId  edit greeting model', (done) => {
+            chai.request(app)
+                .put('/greeting/5f33c7fbd81a4712f8f9affe')
+                .send({
+                    'firstName': 'Pramod',
+                    'lastName': 'Kadamm',
+                })
+                .end( (err, response) => {
+                    result = response.body;
+                    assert.equal(result.message, 'Hello Pramod Kadamm');
+                    assert.equal(result.firstName, 'Pramod');
+                    assert.equal(result.lastName, 'Kadamm');
+                    done();
+                });
+        });
     }),
 
     describe('Custom Greeting Test', () => {

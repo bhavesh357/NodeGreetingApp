@@ -88,9 +88,33 @@ module.exports = class greetingService {
                 if (!item) {
                     return new Error('Greeting not found ');
                 }
+                return item;
+            }).catch( (err) => {
+                return new Error('Greeting not found with id ');
+            });
+    }
+
+
+    /**
+     * @description function to edit greeting by Id
+     * @param {object} req request
+     * @return {object} array of greetings
+     */
+    async editGreeting(req) {
+        const message = this.getHello(req.body);
+        return await Greeting.findByIdAndUpdate(req.params.greetId, {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            message: message.message,
+        }, {new: true})
+            .then( (item) => {
+                if (!item) {
+                    return new Error('Greeting not found ');
+                }
                 console.log(item);
                 return item;
             }).catch( (err) => {
+                console.log(err);
                 return new Error('Greeting not found with id ');
             });
     }

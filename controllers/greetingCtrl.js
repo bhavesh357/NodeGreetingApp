@@ -1,6 +1,5 @@
 // importing service
 const Service = require('../services/greetingSrvc');
-const {param} = require('../server');
 
 // creating a instance of service
 const greeting = new Service();
@@ -70,6 +69,20 @@ module.exports = class greetingController {
     modify(req, res) {
         const greetingMessage =greeting.getHello(req.body);
         res.send(greetingMessage);
+    }
+
+    /**
+    * @description a function to edit the greeting
+    * @param {object} req
+    * @param {object} res
+    */
+    async editGreeting(req, res) {
+        try {
+            const greetingMessage =await greeting.editGreeting(req);
+            res.send(greetingMessage);
+        } catch (err) {
+            res.status(500).send(err);
+        }
     }
 
     /**
