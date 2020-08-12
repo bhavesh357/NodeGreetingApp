@@ -8,6 +8,24 @@ chai.use(chaiHttp);
 let result;
 
 describe('Greeting App Test', () => {
+    describe('Repository Greeting Test', () => {
+        it('POST /greeting returns greeting model', (done) => {
+            chai.request(app)
+                .post('/greeting')
+                .send({
+                    'firstName': 'Bhavesh',
+                    'lastName': 'Kadam',
+                })
+                .end( (err, response) => {
+                    result = response.body;
+                    assert.equal(result.message, 'Hello Bhavesh Kadam');
+                    assert.equal(result.firstName, 'Bhavesh');
+                    assert.equal(result.lastName, 'Kadam');
+                    done();
+                });
+        });
+    }),
+
     describe('Custom Greeting Test', () => {
         it('POST /greeting with first name', (done) => {
             chai.request(app)
@@ -74,7 +92,8 @@ describe('Greeting App Test', () => {
                     done();
                 });
         });
-    });
+    }),
+
     describe('HTTP METHODS Test', () => {
         it('GET /greeting', (done) => {
             chai.request(app)

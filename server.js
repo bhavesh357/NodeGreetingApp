@@ -20,6 +20,11 @@ module.exports = app = express();
 app.use(bodyParser.json());
 
 /**
+ * @description importing the db configuration
+ */
+require('./config/dbConfig');
+
+/**
  * @description importing a instance of greeting routes
  * passing app as param
  */

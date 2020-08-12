@@ -15,7 +15,7 @@ module.exports = class greetingController {
     * @param {object} res
     */
     find(req, res) {
-        const greetingMessage =greeting.getHello(req.body);
+        const greetingMessage = greeting.getHello(req.body);
         res.send(greetingMessage);
     }
 
@@ -24,9 +24,13 @@ module.exports = class greetingController {
     * @param {object} req
     * @param {object} res
     */
-    create(req, res) {
-        const greetingMessage =greeting.getHello(req.body);
-        res.send(greetingMessage);
+    async create(req, res) {
+        try {
+            const greetingMessage =await greeting.createGreeting(req.body);
+            res.send(greetingMessage);
+        } catch (err) {
+            res.status(500).send(err);
+        }
     }
 
     /**
@@ -48,4 +52,4 @@ module.exports = class greetingController {
         const greetingMessage =greeting.getHello(req.body);
         res.send(greetingMessage);
     }
-}
+};

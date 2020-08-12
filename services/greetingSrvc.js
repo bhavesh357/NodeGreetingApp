@@ -1,4 +1,4 @@
-const {request} = require('chai');
+const Greeting = require('../app/model/greetingModel');
 
 /**
  * @description greeting service to manupulate greeting data
@@ -8,10 +8,9 @@ module.exports = class greetingService {
     /**
      * @description an function which returns Hello World message
      * @param {object} reqBody body of the request
-     * @return {object} an object with string message value
+     * @return {object} greeting message
      */
     getHello(reqBody) {
-        console.log(reqBody);
         let message;
         if (reqBody.firstName !== undefined && reqBody.lastName!== undefined) {
             if ( (reqBody.firstName instanceof String ||
@@ -37,7 +36,29 @@ module.exports = class greetingService {
         } else {
             message = 'Hello World';
         }
+
         return {'message': message};
     };
+
+    /**
+     * @description function to save greeting to repo
+     * @param {object} reqBody body of the request
+      */
+    async createGreeting(reqBody) {
+        const message = this.getHello(reqBody).message;
+
+        const greeting = new Greeting({
+            firstName: reqBody.firstName,
+            lastName: reqBody.lastName,
+            message: message,
+        });
+        return await greeting.save()
+            .then((item) => {
+                return item;
+            })
+            .catch((err) => {
+                return err;
+            });
+    }
 };
 
