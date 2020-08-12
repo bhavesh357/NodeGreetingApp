@@ -49,7 +49,7 @@ module.exports = class greetingService {
      * @description function to save greeting to repo
      * @param {object} reqBody body of the request
       */
-    async createGreeting(reqBody) {
+    createGreeting(reqBody) {
         const message = this.getHello(reqBody).message;
 
         const greeting = new Greeting({
@@ -57,7 +57,7 @@ module.exports = class greetingService {
             lastName: reqBody.lastName,
             message: message,
         });
-        return await greeting.save()
+        return greeting.save()
             .then((item) => {
                 return item;
             })
@@ -71,8 +71,8 @@ module.exports = class greetingService {
      * @param {string} id id of the greeting
      * @return {object} greeting
      */
-    async findOne(id) {
-        return await Greeting.findById(id)
+    findOne(id) {
+        return Greeting.findById(id)
             .then( (item) => {
                 if (!item) {
                     return new Error('Greeting not found with id ' + id);
@@ -87,8 +87,8 @@ module.exports = class greetingService {
      * @description function to get greeting by Id
      * @return {object} array of greetings
      */
-    async findAll() {
-        return await Greeting.find()
+    findAll() {
+        return Greeting.find()
             .then( (item) => {
                 if (!item) {
                     return new Error('Greeting not found ');
@@ -105,9 +105,9 @@ module.exports = class greetingService {
      * @param {object} req request
      * @return {object} array of greetings
      */
-    async editGreeting(req) {
+    editGreeting(req) {
         const message = this.getHello(req.body);
-        return await Greeting.findByIdAndUpdate(req.params.greetId, {
+        return Greeting.findByIdAndUpdate(req.params.greetId, {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             message: message.message,
@@ -129,8 +129,8 @@ module.exports = class greetingService {
      * @param {string} id request
      * @return {object} array of greetings
      */
-    async deleteGreeting(id) {
-        return await Greeting.findByIdAndRemove(id)
+    deleteGreeting(id) {
+        return Greeting.findByIdAndRemove(id)
             .then( (item) => {
                 if (!item) {
                     return new Error('Greeting not found ');
