@@ -1,6 +1,6 @@
 // importing service
 const Service = require('../services/greetingSrvc');
-const { param } = require('../server');
+const {param} = require('../server');
 
 // creating a instance of service
 const greeting = new Service();
@@ -28,6 +28,20 @@ module.exports = class greetingController {
     async findOne(req, res) {
         try {
             const greetingMessage =await greeting.findOne(req.params.greetId);
+            res.send(greetingMessage);
+        } catch (err) {
+            res.status(500).send(err);
+        }
+    }
+
+    /**
+    * @description a function to find the all greeting
+    * @param {object} req
+    * @param {object} res
+    */
+    async findAll(req, res) {
+        try {
+            const greetingMessage =await greeting.findAll();
             res.send(greetingMessage);
         } catch (err) {
             res.status(500).send(err);

@@ -36,6 +36,16 @@ describe('Greeting App Test', () => {
                     done();
                 });
         });
+
+        it('GET /greeting/all returns all greeting model', (done) => {
+            chai.request(app)
+                .get('/greetings')
+                .end( (err, response) => {
+                    result = response.body;
+                    assert.equal(response.status, 200);
+                    done();
+                });
+        });
     }),
 
     describe('Custom Greeting Test', () => {

@@ -12,11 +12,13 @@ const greeting= new Controller();
  * @param {function} app that takes http requests
  */
 module.exports = (app) => {
-    app.get('/greeting/', greeting.find);
-
     app.get('/greeting/:greetId', greeting.findOne);
 
+    app.get('/greetings', greeting.findAll);
+
     app.post('/greeting/', greeting.create);
+
+    app.get('/greeting/', greeting.find);
 
     app.put('/greeting/', greeting.modify);
 
