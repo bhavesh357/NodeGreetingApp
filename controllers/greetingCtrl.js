@@ -26,6 +26,9 @@ module.exports = class greetingController {
     */
     async findOne(req, res) {
         try {
+            if(req.params.greetId === undefined){
+                throw new Error('Please Give proper id');
+            }
             greeting.findOne(req.params.greetId,res,(res,item) => {res.send(item)});
         } catch (err) {
             res.status(500).send({"error": err.message});
@@ -52,6 +55,9 @@ module.exports = class greetingController {
     */
     async create(req, res) {
         try {
+            if(req.body === undefined){
+                throw new Error('Please Give proper body');
+            }
             greeting.createGreeting(req.body,res,(res,item) => {res.send(item)});
         } catch (err) {
             res.status(500).send({"error":err.message});
@@ -75,6 +81,11 @@ module.exports = class greetingController {
     */
     async editGreeting(req, res) {
         try {
+            if(req.params.greetId === undefined){
+                throw new Error('Please Give proper id');
+            }else if(req.params.body === undefined){
+                throw new Error('Please Give proper body');
+            }
             greeting.editGreeting(req,res,(res,item) => {res.send(item)});
         } catch (err) {
             res.status(500).send({"error":err.message});
@@ -98,6 +109,9 @@ module.exports = class greetingController {
     */
     async deleteGreeting(req, res) {
         try {
+            if(req.params.greetId === undefined){
+                throw new Error('Please Give proper id');
+            }
             greeting.deleteGreeting(req.params.greetId,res,(res,item) => {res.send(item)});
         } catch (err) {
             res.status(500).send({"error":err.message});
