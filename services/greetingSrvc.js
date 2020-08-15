@@ -88,15 +88,15 @@ module.exports = class greetingService {
      * @description function to get greeting by Id
      * @return {object} array of greetings
      */
-    findAll() {
-        return Greeting.find()
+    findAll(res,callback) {
+        Greeting.find()
             .then( (item) => {
                 if (!item) {
-                    return new Error('Greeting not found ');
+                    throw new Error('Greeting not found with id ' + id);
                 }
-                return item;
+                callback(res,item);
             }).catch( (err) => {
-                return new Error('Greeting not found with id ');
+                throw new Error('Greeting not found with id ' + id);
             });
     }
 

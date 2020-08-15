@@ -31,15 +31,6 @@ module.exports = class greetingController {
             res.status(500).send({"error": err.message});
         }
     }
-    /**
-     * @description an callback function to send a response
-     * @param {object} res response
-     * @param {object} item object to be sent
-     */
-
-    sendResponse(res,item){
-        res.send(item);
-    }
 
     /**
     * @description a function to find the all greeting
@@ -48,8 +39,7 @@ module.exports = class greetingController {
     */
     async findAll(req, res) {
         try {
-            const greetingMessage =await greeting.findAll();
-            res.send(greetingMessage);
+            greeting.findAll(res,(res,item) => {res.send(item)});
         } catch (err) {
             res.status(500).send(err);
         }
