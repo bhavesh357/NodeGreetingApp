@@ -63,7 +63,7 @@ module.exports = class greetingService {
                 return item;
             })
             .catch((err) => {
-                return err;
+                throw new Error(err.message);
             });
     }
 
@@ -72,15 +72,15 @@ module.exports = class greetingService {
      * @param {string} id id of the greeting
      * @return {object} greeting
      */
-    findOne(id) {
-        return Greeting.findById(id)
+    async findOne(id,res,callback) {
+        Greeting.findById(id)
             .then( (item) => {
                 if (!item) {
-                    return new Error('Greeting not found with id ' + id);
+                    throw new Error('Greeting not found with id ' + id);
                 }
-                return item;
+                callback(res,item);
             }).catch( (err) => {
-                return new Error('Greeting not found with id ' + id);
+                callback(res,{'error':'Greeting not found with id ' + id})
             });
     }
 

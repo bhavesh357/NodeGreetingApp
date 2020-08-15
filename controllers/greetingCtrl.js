@@ -26,11 +26,19 @@ module.exports = class greetingController {
     */
     async findOne(req, res) {
         try {
-            const greetingMessage =await greeting.findOne(req.params.greetId);
-            res.send(greetingMessage);
+            greeting.findOne(req.params.greetId,res,(res,item) => {res.send(item)});
         } catch (err) {
-            res.status(500).send(err);
+            res.status(500).send({"error": err.message});
         }
+    }
+    /**
+     * @description an callback function to send a response
+     * @param {object} res response
+     * @param {object} item object to be sent
+     */
+
+    sendResponse(res,item){
+        res.send(item);
     }
 
     /**
@@ -57,7 +65,7 @@ module.exports = class greetingController {
             const greetingMessage =await greeting.createGreeting(req.body);
             res.send(greetingMessage);
         } catch (err) {
-            res.status(500).send(err);
+            res.status(500).send({"error":err.message});
         }
     }
 
@@ -109,4 +117,5 @@ module.exports = class greetingController {
             res.status(500).send(err);
         }
     }
+    
 };
