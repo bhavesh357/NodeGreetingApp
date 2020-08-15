@@ -49,7 +49,7 @@ module.exports = class greetingService {
      * @description function to save greeting to repo
      * @param {object} reqBody body of the request
       */
-    createGreeting(reqBody) {
+    createGreeting(reqBody,res,callback) {
         const message = this.getHello(reqBody).message;
 
         const greeting = new Greeting({
@@ -57,13 +57,13 @@ module.exports = class greetingService {
             lastName: reqBody.lastName,
             message: message,
         });
-        return greeting.save()
+        greeting.save()
             .then((item) => {
                 mailer.sendMail('Successfully added','bk357357@gmail.com','bkadam357@gmail.com','Testing Email');
-                return item;
+                callback(res,item)
             })
             .catch((err) => {
-                throw new Error(err.message);
+                callback(res,{'error':'couldn\'t create greeting'})
             });
     }
 
@@ -80,7 +80,7 @@ module.exports = class greetingService {
                 }
                 callback(res,item);
             }).catch( (err) => {
-                callback(res,{'error':'Greeting not found with id ' + id})
+                callback(res,{'error':err.message})
             });
     }
 
@@ -92,11 +92,11 @@ module.exports = class greetingService {
         Greeting.find()
             .then( (item) => {
                 if (!item) {
-                    throw new Error('Greeting not found with id ' + id);
+                    throw new Error('Greetings not found');
                 }
                 callback(res,item);
             }).catch( (err) => {
-                throw new Error('Greeting not found with id ' + id);
+                callback(res,{'error':err.message})
             });
     }
 

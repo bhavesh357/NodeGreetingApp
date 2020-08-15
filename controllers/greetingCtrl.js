@@ -52,8 +52,7 @@ module.exports = class greetingController {
     */
     async create(req, res) {
         try {
-            const greetingMessage =await greeting.createGreeting(req.body);
-            res.send(greetingMessage);
+            greeting.createGreeting(req.body,res,(res,item) => {res.send(item)});
         } catch (err) {
             res.status(500).send({"error":err.message});
         }
