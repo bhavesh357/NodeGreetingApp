@@ -59,6 +59,7 @@ module.exports = class greetingService {
         });
         return greeting.save()
             .then((item) => {
+                mailer.sendMail('Successfully added','bk357357@gmail.com','bkadam357@gmail.com','Testing Email');
                 return item;
             })
             .catch((err) => {
