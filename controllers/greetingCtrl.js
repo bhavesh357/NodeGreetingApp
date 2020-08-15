@@ -98,11 +98,9 @@ module.exports = class greetingController {
     */
     async deleteGreeting(req, res) {
         try {
-            const greetingMessage =await greeting.
-                deleteGreeting(req.params.greetId);
-            res.send(greetingMessage);
+            greeting.deleteGreeting(req.params.greetId,res,(res,item) => {res.send(item)});
         } catch (err) {
-            res.status(500).send(err);
+            res.status(500).send({"error":err.message});
         }
     }
     

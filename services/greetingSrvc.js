@@ -128,17 +128,15 @@ module.exports = class greetingService {
      * @param {string} id request
      * @return {object} array of greetings
      */
-    deleteGreeting(id) {
-        return Greeting.findByIdAndRemove(id)
+    deleteGreeting(id,res,callback) {
+        Greeting.findByIdAndRemove(id)
             .then( (item) => {
                 if (!item) {
                     return new Error('Greeting not found ');
                 }
-                console.log(item);
-                return {'message': 'deleted successfully'};
+                callback(res,{'message': 'deleted successfully'});
             }).catch( (err) => {
-                console.log(err);
-                return new Error('Greeting not found with id ');
+                callback(res,{'error': err.message});
             });
     }
 };
