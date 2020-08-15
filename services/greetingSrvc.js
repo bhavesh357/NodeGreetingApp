@@ -2,8 +2,8 @@
 const Greeting = require('../app/model/greetingModel');
 
 // importing mail servie
-const Mailer = require('./../lib/service/mailService');
-const mailer = new Mailer();
+const mailer = require('./../lib/service/mailService');
+const emitter = mailer.emitter;
 
 /**
  * @description greeting service to manupulate greeting data
@@ -59,7 +59,7 @@ module.exports = class greetingService {
         });
         greeting.save()
             .then((item) => {
-                mailer.sendMail('Successfully added','bk357357@gmail.com','bkadam357@gmail.com','Testing Email');
+                emitter.emit('notify','Successfully added','bk357357@gmail.com','bkadam357@gmail.com','Testing Email');
                 callback(res,item)
             })
             .catch((err) => {
@@ -94,6 +94,7 @@ module.exports = class greetingService {
                 if (!item) {
                     throw new Error();
                 }
+                emitter.emit('notify','Successfully added','bk357357@gmail.com','bkadam357@gmail.com','Testing Email');
                 callback(res,item);
             }).catch( (err) => {
                 callback(res,{'error':'Greetings not found'})
@@ -115,7 +116,7 @@ module.exports = class greetingService {
         }, {new: true})
             .then( (item) => {
                 if (!item) {
-                    return new Error();
+                    throw new Error();
                 }
                 callback(res,item);
             }).catch( (err) => {

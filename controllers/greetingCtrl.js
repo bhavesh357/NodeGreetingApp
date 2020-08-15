@@ -83,7 +83,7 @@ module.exports = class greetingController {
         try {
             if(req.params.greetId === undefined){
                 throw new Error('Please Give proper id');
-            }else if(req.params.body === undefined){
+            }else if(req.body === undefined){
                 throw new Error('Please Give proper body');
             }
             greeting.editGreeting(req,res,(res,item) => {res.send(item)});
