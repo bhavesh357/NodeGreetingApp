@@ -76,11 +76,11 @@ module.exports = class greetingService {
         Greeting.findById(id)
             .then( (item) => {
                 if (!item) {
-                    throw new Error('Greeting not found with id ' + id);
+                    throw new Error();
                 }
                 callback(res,item);
             }).catch( (err) => {
-                callback(res,{'error':err.message})
+                callback(res,{'error':'Greeting not found with id ' + id})
             });
     }
 
@@ -92,11 +92,11 @@ module.exports = class greetingService {
         Greeting.find()
             .then( (item) => {
                 if (!item) {
-                    throw new Error('Greetings not found');
+                    throw new Error();
                 }
                 callback(res,item);
             }).catch( (err) => {
-                callback(res,{'error':err.message})
+                callback(res,{'error':'Greetings not found'})
             });
     }
 
@@ -115,11 +115,11 @@ module.exports = class greetingService {
         }, {new: true})
             .then( (item) => {
                 if (!item) {
-                    return new Error('Greeting not found ');
+                    return new Error();
                 }
                 callback(res,item);
             }).catch( (err) => {
-                callback(res,{'error': err.message});
+                callback(res,{'error': 'couldn\'t edit greeting'});
             });
     }
 
@@ -136,7 +136,7 @@ module.exports = class greetingService {
                 }
                 callback(res,{'message': 'deleted successfully'});
             }).catch( (err) => {
-                callback(res,{'error': err.message});
+                callback(res,{'error': 'couldn\'t delete greeting'});
             });
     }
 };
