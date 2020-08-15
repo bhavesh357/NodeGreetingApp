@@ -106,9 +106,9 @@ module.exports = class greetingService {
      * @param {object} req request
      * @return {object} array of greetings
      */
-    editGreeting(req) {
+    editGreeting(req,res,callback) {
         const message = this.getHello(req.body);
-        return Greeting.findByIdAndUpdate(req.params.greetId, {
+        Greeting.findByIdAndUpdate(req.params.greetId, {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             message: message.message,
@@ -117,11 +117,9 @@ module.exports = class greetingService {
                 if (!item) {
                     return new Error('Greeting not found ');
                 }
-                console.log(item);
-                return item;
+                callback(res,item);
             }).catch( (err) => {
-                console.log(err);
-                return new Error('Greeting not found with id ');
+                callback(res,{'error': err.message});
             });
     }
 

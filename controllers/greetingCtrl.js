@@ -75,10 +75,9 @@ module.exports = class greetingController {
     */
     async editGreeting(req, res) {
         try {
-            const greetingMessage =await greeting.editGreeting(req);
-            res.send(greetingMessage);
+            greeting.editGreeting(req,res,(res,item) => {res.send(item)});
         } catch (err) {
-            res.status(500).send(err);
+            res.status(500).send({"error":err.message});
         }
     }
 
