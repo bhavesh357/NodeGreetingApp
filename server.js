@@ -4,6 +4,13 @@
  */
 const express = require('express');
 
+
+/**
+ * @description importing cors to allow cross origin requests
+ * @var {class} cors 
+ */
+const cors = require('cors');
+
 /**
  * @description importing express
  * @var {class} bodyParser class instance of body-parser
@@ -18,6 +25,10 @@ module.exports = app = express();
 
 // using bodyparser middleware to parse the url of json type
 app.use(bodyParser.json());
+
+
+//using cors to allow cross origin requests
+app.use(cors());
 
 /**
  * @description importing the db configuration
