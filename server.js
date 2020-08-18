@@ -16,6 +16,7 @@ const cors = require('cors');
  * @var {class} bodyParser class instance of body-parser
  */
 const bodyParser= require('body-parser');
+const logger = require('./config/logger');
 
 /**
  * @description exporting instance of express
@@ -43,5 +44,5 @@ require('./routes/greetingRts')(app);
 
 // checking if the server is running
 app.listen(3000, () => {
-    console.log('server is listening on port 3000');
+    logger.info('server is listening on port 3000');
 });
