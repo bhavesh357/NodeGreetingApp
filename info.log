@@ -1,1 +1,4 @@
 {"message":"server is listening on port 3000","level":"info","timestamp":"2020-08-18T09:00:14.139Z"}
+{"message":"server is listening on port 3000","level":"info","timestamp":"2020-08-18T09:03:15.211Z"}
+{"message":"mongoose connected","level":"info","timestamp":"2020-08-18T09:03:15.242Z"}
+{"message":"Successfully Connected to batabase","level":"info","timestamp":"2020-08-18T09:03:15.245Z"}
